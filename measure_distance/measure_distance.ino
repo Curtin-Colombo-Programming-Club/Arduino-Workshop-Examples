@@ -33,7 +33,7 @@ void loop() {
     float distance = getDistanceCM(duration);
     // Print distance to Serial
     Serial.print("Distance: ");
-    Serial.print(distanceCM);
+    Serial.print(distance);
     Serial.println(" cm");
   }
 }
@@ -46,7 +46,7 @@ unsigned long getDuration() {
   digitalWrite(TRIGPIN, LOW);
 
   // Measure duration of HIGH pulse on echo
-  unsigned long duration = pulseIn(echo, HIGH);
+  unsigned long duration = pulseIn(ECHOPIN, HIGH);
 
   // 10 millisecond delay betweek echo and trigger
   delay(10);
