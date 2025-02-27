@@ -42,11 +42,11 @@ void loop() {
   // Poll distance from sensor
   float distance = getDistanceCM(getDuration());
 
-  if (distance > 8) {
+  if (distance > 25) {
     moveForward();
   } else {
     turnRight();
-    delay(1000);
+    delay(250);
     stopMotors();
   }
 }
