@@ -9,10 +9,6 @@
 const int TRIGPIN = 6;
 const int ECHOPIN = 7;
 
-// Global variables for program
-unsigned long duration;
-float distanceCM;
-
 void setup() {
   // Begin Serial communication
   Serial.begin(9600);
@@ -26,23 +22,40 @@ void setup() {
 }
 
 void loop() {
+  // Get duration of sensor echo pulse
+  unsigned long duration = getDuration();
+
+  // duration > 36000 means no object detected
+  if (duration > 36000) {
+    Serial.println("No object detected.");
+  } else {
+    // Calculate distance to object
+    float distance = getDistanceCM(duration);
+    // Print distance to Serial
+    Serial.print("Distance: ");
+    Serial.print(distanceCM);
+    Serial.println(" cm");
+  }
+}
+
+// Poll sensor and get echo duration
+unsigned long getDuration() {
   // Pulse trigger HIGH for 10 microseconds
   digitalWrite(TRIGPIN, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIGPIN, LOW);
 
   // Measure duration of HIGH pulse on echo
-  duration = pulseIn(echo, HIGH)
+  unsigned long duration = pulseIn(echo, HIGH);
 
-  // duration > 36000 means no object detected
-  if (duration > 36000) {
-    Serial.println("No object detected.")
-  } else {
-    // Calculate distance in cm (divide by 58)
-    distanceCM = duration / 58;
-    // Print distance to Serial
-    Serial.print("Distance: ");
-    Serial.print(distanceCM);
-    Serial.println(" cm");
-  }
+  // 10 millisecond delay betweek echo and trigger
+  delay(10);
+
+  return duration;
+}
+
+// Convert sensor echo duration to distance (cm)
+float getDistanceCM(unsigned long duration) {
+  // Divide by 58 (source: datasheet)
+  return (float) duration / 58;
 }
