@@ -41,9 +41,9 @@ void loop() {
 
 // Move both wheels forward
 void moveForward() {
-  digitalWrite(MOTOR1PIN1, LOW);
+  digitalWrite(MOTOR1PIN1, HIGH);
   digitalWrite(MOTOR1PIN2, LOW);
-  digitalWrite(MOTOR2PIN1, LOW);
+  digitalWrite(MOTOR2PIN1, HIGH);
   digitalWrite(MOTOR2PIN2, LOW);
 }
 
@@ -58,19 +58,19 @@ void moveBackward() {
 // Start rotating clockwise (turning right)
 void turnRight() {
   // Left motor forwards, right motor backwards
-  digitalWrite(MOTOR1PIN1, HIGH);
-  digitalWrite(MOTOR1PIN2, LOW);
-  digitalWrite(MOTOR2PIN1, LOW);
-  digitalWrite(MOTOR2PIN2, HIGH);
+  digitalWrite(MOTOR1PIN1, LOW);
+  digitalWrite(MOTOR1PIN2, HIGH);
+  digitalWrite(MOTOR2PIN1, HIGH);
+  digitalWrite(MOTOR2PIN2, LOW);
 }
 
 // Start rotating counter-clockwise (turning left)
 void turnLeft() {
   // Left motor backwards, right motor forwards
-  digitalWrite(MOTOR1PIN1, LOW);
-  digitalWrite(MOTOR1PIN2, HIGH);
-  digitalWrite(MOTOR2PIN1, HIGH);
-  digitalWrite(MOTOR2PIN2, LOW);
+  digitalWrite(MOTOR1PIN1, HIGH);
+  digitalWrite(MOTOR1PIN2, LOW);
+  digitalWrite(MOTOR2PIN1, LOW);
+  digitalWrite(MOTOR2PIN2, HIGH);
 }
 
 // Stop moving motors
