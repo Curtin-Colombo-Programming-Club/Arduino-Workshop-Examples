@@ -30,13 +30,13 @@ void setup() {
 void loop() {
   // Make some movements 
   moveForward();
-  delay(20);
+  delay(5000);
   moveBackward();
-  delay(20);
+  delay(5000);
   turnRight();
-  delay(20);
+  delay(5000);
   turnLeft();
-  delay(20);
+  delay(5000);
 }
 
 // Move both wheels forward
@@ -47,8 +47,8 @@ void moveForward() {
   digitalWrite(MOTOR2PIN2, LOW);
 }
 
-// Move both wheels backwards
-void moveBackwards() {
+// Move both wheels backward
+void moveBackward() {
   digitalWrite(MOTOR1PIN1, LOW);
   digitalWrite(MOTOR1PIN2, HIGH);
   digitalWrite(MOTOR2PIN1, LOW);

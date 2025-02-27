@@ -42,10 +42,8 @@ void loop() {
   // Poll distance from sensor
   float distance = getDistanceCM(getDuration());
 
-  if (distance > 10) {
+  if (distance > 8) {
     moveForward();
-    delay(500);
-    stopMotors();
   } else {
     turnRight();
     delay(1000);
@@ -61,8 +59,8 @@ void moveForward() {
   digitalWrite(MOTOR2PIN2, LOW);
 }
 
-// Move both wheels backwards
-void moveBackwards() {
+// Move both wheels backward
+void moveBackward() {
   digitalWrite(MOTOR1PIN1, LOW);
   digitalWrite(MOTOR1PIN2, HIGH);
   digitalWrite(MOTOR2PIN1, LOW);
@@ -105,7 +103,7 @@ unsigned long getDuration() {
   digitalWrite(TRIGPIN, LOW);
 
   // Measure duration of HIGH pulse on echo
-  unsigned long duration = pulseIn(echo, HIGH);
+  unsigned long duration = pulseIn(ECHOPIN, HIGH);
 
   // 10 millisecond delay betweek echo and trigger
   delay(10);
